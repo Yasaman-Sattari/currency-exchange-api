@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Exchange</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>پیش‌بینی قیمت ارز</h1>
+        <form action="/convert" method="post">
+            <div class="form-group">
+                <label for="from_currency">از ارز</label>
+                <input type="text" id="from_currency" name="from_currency" placeholder="مثال: USD" required>
+            </div>
+            <div class="form-group">
+                <label for="to_currency">به ارز</label>
+                <input type="text" id="to_currency" name="to_currency" placeholder="مثال: EUR" required>
+            </div>
+            <div class="form-group">
+                <label for="amount">مقدار</label>
+                <input type="number" id="amount" name="amount" placeholder="مقدار ارز را وارد کنید" required>
+            </div>
+            <button type="submit">تبدیل</button>
+        </form>
+
+        <h2>نرخ‌های تبدیل ارز</h2>
+        <table>
+            <tr>
+                <th>ارز</th>
+                <th>نرخ تبدیل</th>
+            </tr>
+            {% for currency, rate in rates.items() %}
+            <tr>
+                <td>{{ currency }}</td>
+                <td>{{ rate }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
